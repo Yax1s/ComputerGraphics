@@ -7,26 +7,34 @@ dataframe = openpyxl.load_workbook(path)
  
 # Define variable to read sheet
 dataframe1 = dataframe.active
+
+#Function to reverse a string
+def reverse_string(x):
+    return x[::-1]
  
 # Iterate the loop to read the cell values
-# for row in range(0, 64):
-#    for col in dataframe1.iter_cols(0, 6):
+# for row in range(0, dataframe1.max_row):
+#    for col in dataframe1.iter_cols(1, dataframe1.max_column):
 #       print(col[row].value)
 
-#Extract first letter from name
-for row in range(1, 64):
+#Create email from name
+email = "" #Variable to hold email
+#Loop through all data, focusing on the name column
+for row in range(1, dataframe1.max_row):
     for col in dataframe1.iter_cols(3, 3):
         name = col[row].value
         string_name = str(name)
-        print(string_name[0])
-
-#Extract last name from name
-reversed_string = reversed(string_name)
-last_name = ""
-for char in reversed_string:
-    if char.isspace():
-        true_name = reversed(last_name)
-    else:
-        last_name = last_name + str(char)
-
-print(true_name)
+        email = email + string_name[0] #Add the first letter of the name to the email
+        reversed_string = reverse_string(string_name)
+        last_name = ""
+        #Loop through each reversed name until a space is reached then extract that substring
+        for char in reversed_string:
+            if char.isspace():
+                true_name = reverse_string(last_name)
+                email = email + true_name #Append the extracted name to the email
+                email = email + '@email.com'
+                print(str.lower(email))
+                email = ""
+                break
+            else:
+                last_name = last_name + str(char) #Append the character to the last_name variable
