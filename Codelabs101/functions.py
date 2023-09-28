@@ -37,15 +37,16 @@ def create_emails(spreadsheet):
 #Function to check if the email addresses are unique
 def unique_email(emails):
     unique = True
-    y = int(0)
-    for x in emails:
-        y += 1
-        for y in emails:
-            if emails[x] ==     emails[y]:
-                unique = False
-                print(emails[x])
-                print(emails[y])
-    return unique
+    for i in range(len(emails)):
+        for j in range(len(emails)):
+            if i != j:
+                if emails[i] == emails[j]:
+                    unique = False
+                    print(emails[i])
+    if unique:
+        print("The email addresses are unique.")
+    else:
+        print("The above email address is repeated.")
 
 #Function to return a list of all male students
 def list_male(spreadsheet):

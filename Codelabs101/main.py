@@ -11,11 +11,8 @@ dataframe = openpyxl.load_workbook(path)
 dataframe1 = dataframe.active
 
 emails = create_emails(dataframe1)
-no_repeat_emails = unique_email(emails)
-if (no_repeat_emails):
-    print("True")
-else:
-    print("False")
+unique_email(emails)
+
 # print("The email addresses are:")
 # for x in emails:
 #     print(x)
