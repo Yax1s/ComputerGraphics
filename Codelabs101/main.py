@@ -1,5 +1,4 @@
 import openpyxl
-import re
 from functions import *
 
 path = r'D:\Bachelor of Science in Informatics and Computer Science\Year 3\Semester 2\Computer Graphics\Code\Repository\ComputerGraphics\Codelabs101\Test Files.xlsx'
@@ -12,22 +11,6 @@ dataframe1 = dataframe.active
 
 emails = create_emails(dataframe1)
 unique_email(emails)
-
-# print("The email addresses are:")
-# for x in emails:
-#     print(x)
-
-# print("")
-
-# male_students = list_male(dataframe1)
-# print("The male students are:")
-# for x in male_students:
-#     print(x)
-
-# print("")
-
-# female_students = list_female(dataframe1)
-# print("The female students are:")
-# for x in female_students:
-#     print(x)
-
+male_students = list_male(dataframe1)
+female_students = list_female(dataframe1)
+save_tsv(emails)
