@@ -14,10 +14,9 @@ for jsonl_file in jsonl_files:
         for line in file:
             record = json.loads(line)
             data.append(record)
-D:\Bachelor of Science in Informatics and Computer Science\Year 3\Semester 2\Computer Graphics\Code\Repository\ComputerGraphics
+
 '''Create a DataFrame from the data'''
 df = pd.DataFrame(data)
-
 
 '''Create an Excel writer object to save the data to an Excel file'''
 excel_writer = pd.ExcelWriter('en-xx.xlsx', engine='openpyxl')
