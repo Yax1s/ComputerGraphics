@@ -1,4 +1,3 @@
 from functions import *
 
-dataset = import_dataset()
-group_language(dataset)
+filter_jsonl_by_column('amazon-massive-dataset/data/de-DE.jsonl', 'german-dev.jsonl', 'partition', 'dev')

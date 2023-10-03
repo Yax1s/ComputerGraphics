@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import glob
+import jsonlines
 
 '''
 Function to import the dataset
@@ -50,3 +51,31 @@ def group_language(data_files):
     '''
     excel_writer._save()
     print('Excel file generated successfully.')
+
+'''
+Function to filter a JSONL file by a specific value in a column and write the filtered data to a new JSONL file
+'''
+
+def filter_jsonl_by_column(input_file, output_file, filter_column, filter_value):
+    """
+    Args:
+        input_file: The path to the input JSONL file.
+        output_file: The path to the output JSONL file.
+        filter_column: The name of the column to filter by.
+        filter_value: The value to filter for in the specified column.
+    """
+    filtered_data = []
+
+    with open(input_file, "r") as infile:
+        for line in infile:
+            try:
+                json_obj = json.loads(line)
+                if filter_column in json_obj and json_obj[filter_column] == filter_value:
+                    filtered_data.append(json_obj)
+            except json.JSONDecodeError as e:
+                print(f"Skipping invalid JSON: {e}")
+
+    with open(output_file, "w") as outfile:
+        for data in filtered_data:
+            outfile.write(json.dumps(data) + "\n")
+
